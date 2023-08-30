@@ -18,7 +18,7 @@
                 <th>Product Name</th>
                 <th>Product price</th>
                 <th>Product availablity</th>
-                <th>Category ID</th>
+                <th>Category name</th>
                 <th>Actions</th>
 
 
@@ -31,7 +31,7 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->availability }}</td>
-                    <td>{{$product->category_id}}</td>
+                    <td>{{$product->category->name}}</td>
                     <td>
                         {{-- <a href="{{route('product.show',$product->product_id)}}">show</a> --}}
                         <form action="{{ route('product.show', $product->id) }}" method="get">

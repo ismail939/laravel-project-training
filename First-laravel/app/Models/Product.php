@@ -12,4 +12,8 @@ class Product extends Model
     // protected $fillable='product_name';
     protected $guarded = [];
     public $timestamps = false;
+
+    function category(){
+        return $this->belongsTo(Category::class);
+    }
 }
