@@ -29,14 +29,14 @@ class ProductController extends Controller
 
     function destroy($id)
     {
-        $product=Product::find($id);
+        $product = Product::find($id);
         $product->delete();
         // dd($product);
-        $oldImageName=$product->product_picture;
-        $oldImagePath=public_path('images/').$oldImageName;
+        $oldImageName = $product->product_picture;
+        $oldImagePath = public_path('images/') . $oldImageName;
         // echo $oldImagePath;
-        if(File::exists($oldImagePath)){
-        File::delete($oldImagePath);
+        if (File::exists($oldImagePath)) {
+            File::delete($oldImagePath);
         }
         return redirect()->route('product.index');
 
@@ -51,27 +51,26 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        if($request->product_picture!==null){
+        if ($request->product_picture !== null) {
             $request->validate([
                 'picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             $imageName = time() . '.' . $request->product_picture->extension();
 
-            $oldImageName=$product->product_picture;
-            $oldImagePath=public_path('images/').$oldImageName;
+            $oldImageName = $product->product_picture;
+            $oldImagePath = public_path('images/') . $oldImageName;
             // echo $oldImagePath;
-            if(File::exists($oldImagePath)){
-            // echo "deleted";
-            File::delete($oldImagePath);
+            if (File::exists($oldImagePath)) {
+                // echo "deleted";
+                File::delete($oldImagePath);
             }
             $request->product_picture->move(public_path('images'), $imageName);
 
             $product->update($request->except('_method', '_token'));
             $product->update([
-                'picture'=>$imageName,
+                'picture' => $imageName,
             ]);
-        }
-        else{
+        } else {
             $product->update($request->except('_method', '_token'));
         }
         return redirect()->route('product.index');
@@ -93,9 +92,9 @@ class ProductController extends Controller
 
         $request->product_picture->move(public_path('images'), $imageName);
 
-        $product=Product::create($request->all());
+        $product = Product::create($request->all());
         $product->update([
-            'picture'=>$imageName,
+            'picture' => $imageName,
         ]);
         return redirect()->route('product.index');
 
