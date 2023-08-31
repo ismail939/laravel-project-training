@@ -12,6 +12,7 @@
 <body>
     <a id="button" href="{{ route('product.create') }}">Add Product</a>
     <a id="button" href="{{ route('category.index') }}">Categories</a>
+    <a id="button" href="{{ route('order.index') }}">Orders</a>
     <table>
         <thead>
             <tr>

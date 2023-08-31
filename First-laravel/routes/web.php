@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,5 @@ Route::put('/products/edit/{id}', [ProductController::class, 'edit'])->name('pro
 Route::post('/products/store', [ProductController::class, 'store'])->name('product.store');
 
 Route::resource('/category', CategoryController::class);
+// Route::resource('/order', OrderController::class);
+Route::get('/order', [OrderController::class, 'index'])->name('order.index');
